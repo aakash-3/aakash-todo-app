@@ -91,10 +91,9 @@ button {
   border-radius: 2px;
   font-size: 14px;
   &:hover {
-    transform: scale(1.1);
+    color: main.$btnColor !important;
   }
   &:active {
     transform: scale(0.9);
-    opacity: 0.8;
   }
 }

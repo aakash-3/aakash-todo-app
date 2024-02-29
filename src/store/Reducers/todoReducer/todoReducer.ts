@@ -2,6 +2,7 @@ import { ActionType } from "type";
 import { todoStateType, todoType } from "types/todoTypes";
 import {
   ADD_TODO,
+  CHANGE_FILTER,
   CHANGE_MODE,
   CLEAR_COMPLETE,
   MARK_COMPLETE,
@@ -12,6 +13,7 @@ const initialState: todoStateType = {
   todoList: [],
   mode: "light",
   idIncre: 0,
+  activeFilter: "All",
 };
 
 const todoReducer = (
@@ -54,6 +56,12 @@ const todoReducer = (
       return {
         ...state,
         todoList: state.todoList.filter((todo) => !todo.completed),
+      };
+    }
+    case CHANGE_FILTER: {
+      return {
+        ...state,
+        activeFilter: action.payload,
       };
     }
     default:

@@ -1,6 +1,7 @@
-import { modeType } from "types/todoTypes";
+import { filterType, modeType } from "types/todoTypes";
 import {
   ADD_TODO,
+  CHANGE_FILTER,
   CHANGE_MODE,
   CLEAR_COMPLETE,
   MARK_COMPLETE,
@@ -40,4 +41,18 @@ const clearComplete = () => {
   };
 };
 
-export { changeMode, addTodo, removeTodo, markComplete, clearComplete };
+const chageFilter = (type: filterType) => {
+  return {
+    type: CHANGE_FILTER,
+    payload: type,
+  };
+};
+
+export {
+  changeMode,
+  addTodo,
+  removeTodo,
+  markComplete,
+  clearComplete,
+  chageFilter,
+};

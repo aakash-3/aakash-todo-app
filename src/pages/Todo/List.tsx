@@ -4,12 +4,44 @@ import { theme } from "theme/theme";
 import { AppDispatch, AppState } from "type";
 import TodoItem from "./TodoItem";
 import { clearComplete } from "store/Reducers/todoReducer/todoAction";
+import Filter from "./Filter";
+import { useEffect, useState } from "react";
+import { todoType } from "types/todoTypes";
 
 const List = () => {
-  const { mode, todoList } = useSelector(
+  const { mode, todoList, activeFilter } = useSelector(
     (state: AppState) => state.todoReducer
   );
+  const [data, setData] = useState<todoType[]>([]);
+  const [leftItemCount, setLeftItemCount] = useState<number>(0);
+
   const dispatch: AppDispatch = useDispatch();
+
+  const handleFilterData = () => {
+    switch (activeFilter) {
+      case "All": {
+        setData(todoList);
+        break;
+      }
+      case "Active": {
+        const filterData = todoList.filter((todo) => !todo.completed);
+        setData(filterData);
+        break;
+      }
+      case "Completed": {
+        const filterData = todoList.filter((todo) => todo.completed);
+        setData(filterData);
+        break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleFilterData();
+    const filterData = todoList.filter((todo) => !todo.completed);
+    setLeftItemCount(filterData.length);
+  }, [todoList, activeFilter]);
+
   return (
     <div
       className={styles.list}
@@ -23,7 +55,7 @@ const List = () => {
         flexDirection: "column",
       }}
     >
-      {todoList.map((todo, index) => (
+      {data.map((todo, index) => (
         <TodoItem
           key={todo.id}
           {...todo}
@@ -56,8 +88,9 @@ const List = () => {
                 : theme.dark.fontColor.secondary,
           }}
         >
-          {todoList.length} {todoList.length > 1 ? "Items" : "Item"}
+          {leftItemCount} {leftItemCount > 1 ? "Items" : "Item"} left
         </p>
+        <Filter />
         <button
           className={styles.btn}
           style={{
@@ -68,7 +101,7 @@ const List = () => {
           }}
           onClick={() => dispatch(clearComplete())}
         >
-          Clear Complete
+          Clear Completed
         </button>
       </div>
     </div>

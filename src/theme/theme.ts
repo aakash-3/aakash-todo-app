@@ -29,3 +29,5 @@ export const buttonBg = `linear-gradient(
   rgb(255, 82, 168) 12.9%,
   rgb(177, 118, 240) 134.3%
 )`;
+
+export const btnColor = "#00aaff";
