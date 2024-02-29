@@ -12,6 +12,7 @@ import "styles/App.scss";
 
 // Pages
 import Todo from "pages/Todo";
+import { theme } from "theme/theme";
 
 function App() {
   const { mode } = useSelector((state: AppState) => state.todoReducer);
@@ -20,7 +21,11 @@ function App() {
     <div
       className="App"
       style={{
-        backgroundImage: `url"${
+        backgroundColor:
+          mode === "light"
+            ? theme.light.backgroundColor.primary
+            : theme.dark.backgroundColor.primary,
+        backgroundImage: `url("${
           width < 768
             ? mode === "light"
               ? mblightBgImg
@@ -29,31 +34,11 @@ function App() {
             ? lightBgImg
             : darkBgImg
         }"`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        transition: "all 0.3s ease-in",
       }}
     >
-      {/* {width < 768 ? (
-        <img
-          style={{
-            width: "100%",
-            objectFit: "contain",
-            position: "fixed",
-            zIndex: -1,
-          }}
-          src={mode === "light" ? mblightBgImg : mbdarkBgImg}
-          alt="darkBg"
-        />
-      ) : (
-        <img
-          style={{
-            width: "100%",
-            objectFit: "contain",
-            position: "fixed",
-            zIndex: -1,
-          }}
-          src={mode === "light" ? lightBgImg : darkBgImg}
-          alt="darkBg"
-        />
-      )} */}
       <Todo />
     </div>
   );

@@ -7,15 +7,7 @@ import { theme } from "theme/theme";
 const Todo = () => {
   const { mode } = useSelector((state: AppState) => state.todoReducer);
   return (
-    <div
-      className={styles.container}
-      style={{
-        backgroundColor:
-          mode === "light"
-            ? theme.light.backgroundColor.primary
-            : theme.dark.backgroundColor.primary,
-      }}
-    >
+    <div className={styles.container}>
       <Header />
     </div>
   );
