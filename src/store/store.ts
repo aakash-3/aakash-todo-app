@@ -20,7 +20,7 @@ declare global {
 }
 
 const todoPersistConfig = {
-  key: "authState",
+  key: "todoState",
   storage,
 };
 

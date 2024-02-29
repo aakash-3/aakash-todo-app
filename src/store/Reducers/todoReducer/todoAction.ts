@@ -1,5 +1,6 @@
 import { modeType } from "types/todoTypes";
-import { CHANGE_MODE } from "./toConstant";
+import { ADD_TODO, CHANGE_MODE } from "./toConstant";
+import { AppDispatch } from "type";
 
 const changeMode = (payload: modeType) => {
   return {
@@ -8,4 +9,11 @@ const changeMode = (payload: modeType) => {
   };
 };
 
-export { changeMode };
+const addTodo = (todo: string) => (dispatch: AppDispatch) => {
+  dispatch({
+    type: ADD_TODO,
+    payload: todo,
+  });
+};
+
+export { changeMode, addTodo };
