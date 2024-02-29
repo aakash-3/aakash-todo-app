@@ -23,3 +23,9 @@ export const theme = {
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   border: "#cccccc",
 };
+
+export const buttonBg = `linear-gradient(
+  358.3deg,
+  rgb(255, 82, 168) 12.9%,
+  rgb(177, 118, 240) 134.3%
+)`;

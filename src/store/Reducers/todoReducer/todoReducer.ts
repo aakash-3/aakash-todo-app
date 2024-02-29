@@ -1,6 +1,11 @@
 import { ActionType } from "type";
 import { todoStateType, todoType } from "types/todoTypes";
-import { ADD_TODO, CHANGE_MODE } from "./toConstant";
+import {
+  ADD_TODO,
+  CHANGE_MODE,
+  MARK_COMPLETE,
+  REMOVE_TODO,
+} from "./toConstant";
 
 const initialState: todoStateType = {
   todoList: [],
@@ -26,6 +31,22 @@ const todoReducer = (
         ...state,
         todoList: [newTodo, ...state.todoList],
         idIncre: state.idIncre + 1,
+      };
+    }
+    case REMOVE_TODO: {
+      return {
+        ...state,
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload),
+      };
+    }
+    case MARK_COMPLETE: {
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          if (todo.id === action.payload) {
+            return { ...todo, completed: todo.completed ? false : true };
+          } else return todo;
+        }),
       };
     }
     default:
