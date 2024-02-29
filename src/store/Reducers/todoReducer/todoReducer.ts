@@ -3,6 +3,7 @@ import { todoStateType, todoType } from "types/todoTypes";
 import {
   ADD_TODO,
   CHANGE_MODE,
+  CLEAR_COMPLETE,
   MARK_COMPLETE,
   REMOVE_TODO,
 } from "./toConstant";
@@ -47,6 +48,12 @@ const todoReducer = (
             return { ...todo, completed: todo.completed ? false : true };
           } else return todo;
         }),
+      };
+    }
+    case CLEAR_COMPLETE: {
+      return {
+        ...state,
+        todoList: state.todoList.filter((todo) => !todo.completed),
       };
     }
     default:

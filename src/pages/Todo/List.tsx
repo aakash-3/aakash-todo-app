@@ -1,13 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "styles/todo.module.scss";
 import { theme } from "theme/theme";
-import { AppState } from "type";
+import { AppDispatch, AppState } from "type";
 import TodoItem from "./TodoItem";
+import { clearComplete } from "store/Reducers/todoReducer/todoAction";
 
 const List = () => {
   const { mode, todoList } = useSelector(
     (state: AppState) => state.todoReducer
   );
+  const dispatch: AppDispatch = useDispatch();
   return (
     <div
       className={styles.list}
@@ -56,6 +58,18 @@ const List = () => {
         >
           {todoList.length} {todoList.length > 1 ? "Items" : "Item"}
         </p>
+        <button
+          className={styles.btn}
+          style={{
+            color:
+              mode === "light"
+                ? theme.light.fontColor.tertiory
+                : theme.dark.fontColor.tertiory,
+          }}
+          onClick={() => dispatch(clearComplete())}
+        >
+          Clear Complete
+        </button>
       </div>
     </div>
   );

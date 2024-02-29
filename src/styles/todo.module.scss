@@ -83,4 +83,18 @@ button {
   height: 500px;
   border-radius: 8px;
   overflow: auto;
+  font-size: 14px;
+}
+.btn {
+  width: auto;
+  background-color: transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
 }

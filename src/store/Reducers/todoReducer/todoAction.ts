@@ -2,6 +2,7 @@ import { modeType } from "types/todoTypes";
 import {
   ADD_TODO,
   CHANGE_MODE,
+  CLEAR_COMPLETE,
   MARK_COMPLETE,
   REMOVE_TODO,
 } from "./toConstant";
@@ -33,4 +34,10 @@ const markComplete = (todo: number) => (dispatch: AppDispatch) => {
   });
 };
 
-export { changeMode, addTodo, removeTodo, markComplete };
+const clearComplete = () => {
+  return {
+    type: CLEAR_COMPLETE,
+  };
+};
+
+export { changeMode, addTodo, removeTodo, markComplete, clearComplete };
