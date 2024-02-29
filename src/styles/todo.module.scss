@@ -1,13 +1,6 @@
 @use "index.scss" as main;
 
-.container {
-  height: 100%;
-  padding: 60px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.header {
+%baseWidth {
   @include main.xs {
     width: 100%;
     max-width: 600px;
@@ -15,6 +8,31 @@
   @include main.md {
     width: 600px;
   }
+}
+
+.container {
+  height: 100%;
+  padding: 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+button {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 0px;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+.header {
+  @extend %baseWidth;
   .title {
     display: flex;
     align-items: center;
@@ -27,13 +45,8 @@
     letter-spacing: 12px;
   }
   button {
-    background-color: transparent;
     width: 48px;
     height: 48px;
-    border-radius: 50%;
-    border: 0px;
-    padding: 8px;
-    cursor: pointer;
     &:hover {
       background: main.$backgrounColor;
     }
@@ -51,7 +64,7 @@
     gap: 8px;
     input {
       flex: 1;
-      height: 36px;
+      height: 32px;
       border: none;
       background-color: transparent;
       &:focus {
@@ -62,10 +75,12 @@
       width: 32px;
       height: 32px;
       background: main.$backgrounColor;
-      &:active {
-        transform: scale(0.8);
-        opacity: 0.8;
-      }
     }
   }
+}
+.list {
+  @extend %baseWidth;
+  height: 500px;
+  border-radius: 8px;
+  overflow: auto;
 }
