@@ -11,7 +11,7 @@ import {
 
 const initialState: todoStateType = {
   todoList: [],
-  mode: "light",
+  mode: "dark",
   idIncre: 0,
   activeFilter: "All",
 };

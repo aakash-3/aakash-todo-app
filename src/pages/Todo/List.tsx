@@ -7,6 +7,7 @@ import { clearComplete } from "store/Reducers/todoReducer/todoAction";
 import Filter from "./Filter";
 import { useEffect, useState } from "react";
 import { todoType } from "types/todoTypes";
+import useWindowSize from "hooks/useWindowSize";
 
 const List = () => {
   const { mode, todoList, activeFilter } = useSelector(
@@ -14,6 +15,7 @@ const List = () => {
   );
   const [data, setData] = useState<todoType[]>([]);
   const [leftItemCount, setLeftItemCount] = useState<number>(0);
+  const { width } = useWindowSize();
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -55,13 +57,35 @@ const List = () => {
         flexDirection: "column",
       }}
     >
-      {data.map((todo, index) => (
-        <TodoItem
-          key={todo.id}
-          {...todo}
-          isLast={index === todoList.length - 1}
-        />
-      ))}
+      {data.length ? (
+        data.map((todo, index) => (
+          <TodoItem
+            key={todo.id}
+            {...todo}
+            isLast={index === todoList.length - 1}
+          />
+        ))
+      ) : (
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p
+            style={{
+              color:
+                mode === "light"
+                  ? theme.light.fontColor.secondary
+                  : theme.dark.fontColor.secondary,
+            }}
+          >
+            No Data Available...
+          </p>
+        </div>
+      )}
       <div
         style={{
           width: "100%",
@@ -90,7 +114,7 @@ const List = () => {
         >
           {leftItemCount} {leftItemCount > 1 ? "Items" : "Item"} left
         </p>
-        <Filter />
+        {width >= 768 ? <Filter /> : <></>}
         <button
           className={styles.btn}
           style={{
