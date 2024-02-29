@@ -36,7 +36,6 @@ function App() {
         }"`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
-        transition: "all 0.3s ease-in",
       }}
     >
       <Todo />

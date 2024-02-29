@@ -27,19 +27,45 @@
     letter-spacing: 12px;
   }
   button {
-    box-sizing: border-box;
     background-color: transparent;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: 0px;
     padding: 8px;
     cursor: pointer;
-    transition: all 0.2s ease-in;
     &:hover {
-      background-color: gray;
+      background: main.$backgrounColor;
     }
     svg > path {
       width: 24px;
       height: 24px;
+    }
+  }
+  .inputBox {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    input {
+      flex: 1;
+      height: 36px;
+      border: none;
+      background-color: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      width: 32px;
+      height: 32px;
+      background: main.$backgrounColor;
+      &:active {
+        transform: scale(0.8);
+        opacity: 0.8;
+      }
     }
   }
 }
